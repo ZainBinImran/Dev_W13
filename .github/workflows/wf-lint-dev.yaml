@@ -13,12 +13,11 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
       - name: Lint HTML and CSS
-        run:
+        run: |
           npx htmlhint "**/*.html"
           npx stylelint "**/*.css"
   build-job:
-
-    needs: lint-job
+    needs: linting-job  # Fix here, change lint-job to linting-job
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
