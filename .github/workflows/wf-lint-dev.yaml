@@ -1,8 +1,5 @@
 name: wf-dev-lint
 on:
-  push:
-    branches:
-      - develop
   pull_request:
     branches:
       - develop
@@ -13,11 +10,12 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
       - name: Lint HTML and CSS
-        run: |
+        run:
           npx htmlhint "**/*.html"
           npx stylelint "**/*.css"
   build-job:
-    needs: linting-job  # Fix here, change lint-job to linting-job
+
+    needs: lint-job
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
